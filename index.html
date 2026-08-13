@@ -943,5 +943,63 @@
   }
 })();
 </script>
+    function spawnConfetti(){
+    var emojis = ['🎉','✨','🌷','🎈'];
+    var stage = document.querySelector('.stage');
+    for(var i=0;i<20;i++){
+      (function(i){
+        setTimeout(function(){
+          var p = document.createElement('div');
+          p.className = 'confetti';
+          p.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+          p.style.left = Math.random()*100 + '%';
+          p.style.animationDuration = (3.5 + Math.random()*3) + 's';
+          p.style.fontSize = (10 + Math.random()*10) + 'px';
+          stage.appendChild(p);
+          setTimeout(function(){ p.remove(); }, 8000);
+        }, i*180);
+      })(i);
+    }
+  }
+})();
+</script>
+
+<!-- Firebase Open Counter -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+  import {
+    getFirestore,
+    doc,
+    setDoc,
+    increment
+  } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyB8f02S08vP0VOrS_sQEeh5m3iWFKSVR8Q",
+    authDomain: "izabd-f228e.firebaseapp.com",
+    projectId: "izabd-f228e",
+    storageBucket: "izabd-f228e.firebasestorage.app",
+    messagingSenderId: "691616291537",
+    appId: "1:691616291537:web:543ae5eedb6058e96983f0"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const counterRef = doc(db, "stats", "website");
+
+  try {
+    await setDoc(
+      counterRef,
+      { opens: increment(1) },
+      { merge: true }
+    );
+
+    console.log("Website open recorded.");
+  } catch (error) {
+    console.error("Counter error:", error);
+  }
+</script>
+
 </body>
 </html>
