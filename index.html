@@ -942,27 +942,7 @@
     }
   }
 })();
-</script>
-    function spawnConfetti(){
-    var emojis = ['🎉','✨','🌷','🎈'];
-    var stage = document.querySelector('.stage');
-    for(var i=0;i<20;i++){
-      (function(i){
-        setTimeout(function(){
-          var p = document.createElement('div');
-          p.className = 'confetti';
-          p.textContent = emojis[Math.floor(Math.random()*emojis.length)];
-          p.style.left = Math.random()*100 + '%';
-          p.style.animationDuration = (3.5 + Math.random()*3) + 's';
-          p.style.fontSize = (10 + Math.random()*10) + 'px';
-          stage.appendChild(p);
-          setTimeout(function(){ p.remove(); }, 8000);
-        }, i*180);
-      })(i);
-    }
-  }
-})();
-</script>
+
 
 <!-- Firebase Open Counter -->
 <script type="module">
